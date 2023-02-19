@@ -15,7 +15,7 @@ pipeline {
             steps {
               echo "building the docker image..."
               withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                  sh 'sudo docker build -t muhab404/jenkins-demo:jma-2.0 .'
+                  sh 'docker build -t muhab404/jenkins-demo:jma-2.0 .'
                   sh "echo $PASS | sudo docker login -u $USER --password-stdin"
                   sh 'docker push muhab404/jenkins-demo:jma-2.0'
             }
