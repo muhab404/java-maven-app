@@ -93,7 +93,7 @@ resource "aws_instance" "myapp-server" {
     # ami = data.aws_ami.latest-amazon-linux-image.id
     ami = "ami-053b0d53c279acc90"
     instance_type = var.instance_type
-    key_name = "myapp-key-pair"
+    key_name = "${aws_key_pair.server-key.key_name}"
 
     subnet_id = aws_subnet.myapp-subnet-1.id
     vpc_security_group_ids = [aws_default_security_group.default-sg.id]
