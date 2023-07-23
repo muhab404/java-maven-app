@@ -93,7 +93,7 @@ resource "aws_instance" "myapp-server" {
     # ami = data.aws_ami.latest-amazon-linux-image.id
     ami = "ami-053b0d53c279acc90"
     instance_type = var.instance_type
-    key_name = "${aws_key_pair.server-key.key_name}"
+    key_name = "server-key"
 
     subnet_id = aws_subnet.myapp-subnet-1.id
     vpc_security_group_ids = [aws_default_security_group.default-sg.id]
@@ -112,12 +112,3 @@ output "ec2_public_ip" {
     value = aws_instance.myapp-server.public_ip
 }
 
-data "aws_region" "current" {}
-
-output "region-name" {
-    value = data.aws_region.current.name
-}
-
-resource "aws_key_pair" "server-key" {
-  key_name   = "server-key"
-}
