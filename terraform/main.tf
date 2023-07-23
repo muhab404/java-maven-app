@@ -112,21 +112,8 @@ output "ec2_public_ip" {
     value = aws_instance.myapp-server_2.public_ip
 }
 
-data "aws_key_pair" "example" {
-  key_name           = "server-key"
-  include_public_key = true
+data "aws_region" "current" {}
 
-
-}
-
-output "fingerprint" {
-  value = data.aws_key_pair.example.fingerprint
-}
-
-output "name" {
-  value = data.aws_key_pair.example.key_name
-}
-
-output "id" {
-  value = data.aws_key_pair.example.id
+output "region-name" {
+    value = data.aws_region.current.name
 }
