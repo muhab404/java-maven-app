@@ -117,3 +117,7 @@ data "aws_region" "current" {}
 output "region-name" {
     value = data.aws_region.current.name
 }
+
+resource "aws_key_pair" "server-key" {
+  key_name   = "server-key"
+}
