@@ -50,8 +50,6 @@ pipeline {
                 script {
                     dir('terraform') {
                         sh "terraform init"
-                        // sh "terraform state rm aws_key_pair.server-key"
-                        sh "terraform import aws_key_pair.server-key 36:ab:15:2e:48:99:b6:9d:57:c9:1c:e0:df:a3:e6:ba:83:21:56:4d"
                         sh "terraform apply --auto-approve"
                         EC2_PUBLIC_IP = sh(
                             script: "terraform output ec2_public_ip",
