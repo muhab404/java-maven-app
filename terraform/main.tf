@@ -89,11 +89,11 @@ data "aws_ami" "latest-amazon-linux-image" {
     }
 }
 
-resource "aws_instance" "myapp-server_2" {
+resource "aws_instance" "myapp-server" {
     # ami = data.aws_ami.latest-amazon-linux-image.id
     ami = "ami-053b0d53c279acc90"
     instance_type = var.instance_type
-    key_name = "server-key"
+    key_name = "myapp-key-pair"
 
     subnet_id = aws_subnet.myapp-subnet-1.id
     vpc_security_group_ids = [aws_default_security_group.default-sg.id]
@@ -109,7 +109,7 @@ resource "aws_instance" "myapp-server_2" {
 }
 
 output "ec2_public_ip" {
-    value = aws_instance.myapp-server_2.public_ip
+    value = aws_instance.myapp-server.public_ip
 }
 
 data "aws_region" "current" {}
